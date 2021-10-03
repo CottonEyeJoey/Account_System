@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
-@Table(name = "DEMO_ACCOUNT_TYPE")
+@Table(name = "ACCOUNT_TRANSACTION", schema = "hr")
 public class AccountTransaction implements Serializable
 {
 
@@ -73,6 +73,11 @@ public class AccountTransaction implements Serializable
     {
         return accountType ;
     }
+
+    public void setAccountType(AccountType accountType) {
+        this.accountType = accountType;
+    }
+
 
     @Override
     public boolean equals(Object o) {

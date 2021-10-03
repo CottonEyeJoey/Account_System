@@ -10,7 +10,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 @ApiModel(value = "AccountType",description = "A DTO representing the AccountType")
-public class AccountTypeDto {
+public class AccountTypeDto implements Serializable {
 
     private static final long serialVersionUID = -5346853206480289868L;
 
@@ -28,9 +28,9 @@ public class AccountTypeDto {
     }
 
     public AccountTypeDto(AccountType accountType){
+        this.setMnemonic(accountType.getMnemonic());
         this.setAccountTypeName(accountType.getAccountTypeName());
         this.setCreationDate(accountType.getCreationDate());
-        this.setMnemonic(accountType.getMnemonic());
     }
     @ApiModelProperty(position = 1,
             value = "AccountType Mnemonic",

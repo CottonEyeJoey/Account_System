@@ -10,8 +10,8 @@ public interface AccountTypeRepository extends JpaRepository<AccountType,Long> {
 
     @Query(value = "SELECT "+
     "      at"+
-    "     FROM "+
-    "          AccountType at" +
-    "   WHERE at.mnemonic = :mnemonic ")
+    "  FROM "+
+    "      AccountType at" +
+    " WHERE at.mnemonic = :mnemonic ")
     AccountType getAccountTypeByMnemonic(String mnemonic);
 }
