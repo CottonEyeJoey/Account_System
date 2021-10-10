@@ -7,8 +7,9 @@ import za.ac.nwu.ac.domain.persistence.AccountType;
 import za.ac.nwu.ac.domain.persistence.Balance;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.Objects;
+
+@ApiModel(value = "Balance",description = "A DTO representing the Balance")
 public class BalanceDto implements Serializable {
 
     private static final long serialVersionUID = 8732924396956507429L;

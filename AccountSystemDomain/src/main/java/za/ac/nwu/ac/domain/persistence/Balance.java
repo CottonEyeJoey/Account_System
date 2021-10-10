@@ -25,6 +25,8 @@ public class Balance implements Serializable {
     }
 
     @Id
+    @SequenceGenerator(name = "MEMBER_SEQ", sequenceName = "hr.MEMBER_SEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MEMBER_SEQ")
     @Column(name = "MEMBER_ID")
     public Long getMemberId() {
         return memberId;

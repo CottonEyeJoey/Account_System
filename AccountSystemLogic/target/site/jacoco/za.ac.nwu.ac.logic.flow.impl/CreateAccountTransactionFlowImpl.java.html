@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CreateAccountTransactionFlowImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">AccountSystemLogic</a> &gt; <a href="index.source.html" class="el_package">za.ac.nwu.ac.logic.flow.impl</a> &gt; <span class="el_source">CreateAccountTransactionFlowImpl.java</span></div><h1>CreateAccountTransactionFlowImpl.java</h1><pre class="source lang-java linenums">package za.ac.nwu.ac.logic.flow.impl;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
+import za.ac.nwu.ac.domain.dto.AccountTransactionDto;
+import za.ac.nwu.ac.domain.dto.BalanceDto;
+import za.ac.nwu.ac.logic.flow.CreateAccountTransactionFlow;
+import za.ac.nwu.ac.logic.flow.FetchAccountTypeFlow;
+import za.ac.nwu.ac.translator.AccountTransactionTranslator;
+import za.ac.nwu.ac.translator.BalanceTranslator;
+
+
+import javax.transaction.Transactional;
+import java.time.LocalDate;
+
+@Transactional
+@Component(&quot;createAccountTransactionFlowName&quot;)
+public class CreateAccountTransactionFlowImpl implements CreateAccountTransactionFlow {
+
+<span class="fc" id="L21">    private static final Logger LOGGER = LoggerFactory.getLogger(CreateAccountTransactionFlowImpl.class);</span>
+    private final AccountTransactionTranslator accountTransactionTranslator;
+    private final FetchAccountTypeFlow fetchAccountTypeFlow;
+    private final BalanceTranslator balanceTranslator;
+
+
+    public CreateAccountTransactionFlowImpl(AccountTransactionTranslator accountTransactionTranslator,
+<span class="fc" id="L28">                                            FetchAccountTypeFlow fetchAccountTypeFlow,BalanceTranslator balanceTranslator) {</span>
+<span class="fc" id="L29">        this.accountTransactionTranslator = accountTransactionTranslator;</span>
+<span class="fc" id="L30">        this.fetchAccountTypeFlow = fetchAccountTypeFlow;</span>
+<span class="fc" id="L31">        this.balanceTranslator = balanceTranslator;</span>
+<span class="fc" id="L32">    }</span>
+
+    @Override
+    public AccountTransactionDto create(AccountTransactionDto accountTransactionDto,Boolean add){
+<span class="fc" id="L36">        LOGGER.info(&quot;The input object was {}&quot;, accountTransactionDto);</span>
+<span class="pc bpc" id="L37" title="1 of 2 branches missed.">        if(null == accountTransactionDto.getTransactionDate()){</span>
+<span class="nc" id="L38">            accountTransactionDto.setTransactionDate(LocalDate.now());</span>
+        }
+
+<span class="fc" id="L41">        AccountTransactionDto results = accountTransactionTranslator.save(accountTransactionDto);</span>
+<span class="fc" id="L42">        LOGGER.info(&quot;The return object is {}&quot;, results);</span>
+
+<span class="fc" id="L44">        BalanceDto updateRequest = new BalanceDto(accountTransactionDto.getMemberId(),</span>
+<span class="pc bpc" id="L45" title="1 of 2 branches missed.">                accountTransactionDto.getAccountTypeMnemonic(), add?accountTransactionDto.getAmount() : -accountTransactionDto.getAmount());</span>
+<span class="fc" id="L46">        LOGGER.info(&quot;The balance being updated is {}&quot;, updateRequest);</span>
+<span class="fc" id="L47">        BalanceDto updatedBalance = balanceTranslator.updateBalance(updateRequest);</span>
+<span class="fc" id="L48">        LOGGER.info(&quot;The new balance is {}&quot;, updatedBalance);</span>
+<span class="fc" id="L49">        return results;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

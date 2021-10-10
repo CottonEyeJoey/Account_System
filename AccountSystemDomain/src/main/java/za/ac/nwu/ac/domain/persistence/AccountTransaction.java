@@ -29,8 +29,16 @@ public class AccountTransaction implements Serializable
         this.amount = amount;
         this.transactionDate = transactionDate;
     }
+    public AccountTransaction(AccountType accountType,Long memberId, Long amount, LocalDate transactionDate) {
+        this.accountType = accountType;
+        this.memberId = memberId;
+        this.amount = amount;
+        this.transactionDate = transactionDate;
+    }
 
     @Id
+    @SequenceGenerator(name = "TRANSACTION_SEQ", sequenceName = "hr.TRANSACTION_SEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TRANSACTION_SEQ")
     @Column(name = "TRANSACTION_ID")
     public Long getTransactionId() {
         return transactionId;
@@ -39,6 +47,7 @@ public class AccountTransaction implements Serializable
     public void setTransactionId(Long transactionId) {
         this.transactionId = transactionId;
     }
+
 
     @Column(name = "MEMBER_ID")
     public Long getMemberId() {
