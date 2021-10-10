@@ -10,9 +10,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import za.ac.nwu.ac.domain.dto.BalanceDto;
 import za.ac.nwu.ac.translator.BalanceTranslator;
 
-import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 

@@ -8,15 +8,13 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import za.ac.nwu.ac.domain.dto.AccountTransactionDto;
-import za.ac.nwu.ac.domain.dto.AccountTypeDto;
 import za.ac.nwu.ac.domain.dto.BalanceDto;
-import za.ac.nwu.ac.domain.persistence.AccountTransaction;
-import za.ac.nwu.ac.domain.persistence.AccountType;
+
 import za.ac.nwu.ac.translator.AccountTransactionTranslator;
 import za.ac.nwu.ac.translator.BalanceTranslator;
 
 import java.time.LocalDate;
-import java.util.Date;
+
 
 import static org.junit.Assert.*;
 import static org.mockito.AdditionalAnswers.returnsFirstArg;

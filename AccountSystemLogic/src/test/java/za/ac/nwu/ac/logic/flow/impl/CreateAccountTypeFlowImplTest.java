@@ -6,7 +6,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 import za.ac.nwu.ac.domain.dto.AccountTypeDto;
 import za.ac.nwu.ac.translator.AccountTypeTranslator;
